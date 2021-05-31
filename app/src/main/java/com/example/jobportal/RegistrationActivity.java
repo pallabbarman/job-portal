@@ -3,6 +3,7 @@ package com.example.jobportal;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -26,12 +27,16 @@ public class RegistrationActivity extends AppCompatActivity {
 
     // Firebase Auth
     private FirebaseAuth mAuth;
+
+    // Progress
+    private ProgressDialog mDialog;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
         mAuth = FirebaseAuth.getInstance();
+        mDialog=new ProgressDialog(this);
         Registration();
     }
 
@@ -60,12 +65,19 @@ public class RegistrationActivity extends AppCompatActivity {
                     return;
                 }
 
+                mDialog.setMessage("Processing");
+                mDialog.show();
+
                 mAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(getApplicationContext(),"Successful",Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(),HomeActivity.class));
+                            mDialog.dismiss();
+                        }
+                        else {
+                            Toast.makeText(getApplicationContext(),"Registration Failed",Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
