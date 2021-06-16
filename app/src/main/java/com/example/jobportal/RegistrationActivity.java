@@ -1,8 +1,5 @@
 package com.example.jobportal;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -25,18 +25,22 @@ public class RegistrationActivity extends AppCompatActivity {
     private Button btnReg;
     private Button btnLogin;
 
-    // Firebase Auth
+
+    //Firebase Auth
     private FirebaseAuth mAuth;
 
-    // Progress
+    //progress dialog
     private ProgressDialog mDialog;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
-        mAuth = FirebaseAuth.getInstance();
-        mDialog=new ProgressDialog(this);
+
+        mAuth=FirebaseAuth.getInstance();
+
+        mDialog = new ProgressDialog(this);
+
         Registration();
     }
 
@@ -45,50 +49,58 @@ public class RegistrationActivity extends AppCompatActivity {
         emailReg=findViewById(R.id.email_registration);
         passReg=findViewById(R.id.registration_password);
 
-        btnReg=findViewById(R.id.btn_registration);
-        btnLogin=findViewById(R.id.btn_login);
+        btnReg = findViewById(R.id.btn_registration);
+        btnLogin = findViewById(R.id.btn_login);
+
 
         btnReg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String email=emailReg.getText().toString().trim();
-                String pass=passReg.getText().toString().trim();
+                String email = emailReg.getText().toString().trim();
+                String pass = passReg.getText().toString().trim();
 
-                if(TextUtils.isEmpty(email)){
-                    emailReg.setError("Required field");
+                if(TextUtils.isEmpty(email)) {
+                    emailReg.setError("Required Field..");
                     return;
                 }
 
-                if (TextUtils.isEmpty(pass)){
-                    passReg.setError("Required field");
+                if(TextUtils.isEmpty(pass))
+                {
+                    passReg.setError("Required Field..");
                     return;
                 }
 
-                mDialog.setMessage("Processing");
+                mDialog.setMessage("Processing..");
                 mDialog.show();
 
-                mAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                mAuth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
+
+                        if (task.isSuccessful()){
                             Toast.makeText(getApplicationContext(),"Successful",Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(),HomeActivity.class));
+
+                            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+
                             mDialog.dismiss();
-                        }
-                        else {
-                            Toast.makeText(getApplicationContext(),"Registration Failed",Toast.LENGTH_SHORT).show();
+                        } else{
+                            Toast.makeText(getApplicationContext(), "Registration Failed..", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
+
             }
         });
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+
             }
         });
+
     }
 }
