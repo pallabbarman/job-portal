@@ -30,6 +30,7 @@ public class InsertJobPostActivity extends AppCompatActivity {
     private EditText job_description;
     private EditText job_skills;
     private EditText job_salary;
+    private EditText job_location;
 
     private Button btn_post_job;
 
@@ -61,6 +62,7 @@ public class InsertJobPostActivity extends AppCompatActivity {
         job_description=findViewById(R.id.job_description);
         job_skills=findViewById(R.id.job_skill);
         job_salary=findViewById(R.id.job_salary);
+        job_location=findViewById(R.id.job_location);
 
         btn_post_job=findViewById(R.id.btn_job_post);
 
@@ -72,6 +74,7 @@ public class InsertJobPostActivity extends AppCompatActivity {
                 String description=job_description.getText().toString().trim();
                 String skills=job_skills.getText().toString().trim();
                 String salary=job_salary.getText().toString().trim();
+                String location=job_location.getText().toString().trim();
 
                 if (TextUtils.isEmpty(title)){
                     job_title.setError("Required Field");
@@ -93,10 +96,15 @@ public class InsertJobPostActivity extends AppCompatActivity {
                     return;
                 }
 
+                if (TextUtils.isEmpty(location)){
+                    job_location.setError("Required Field");
+                    return;
+                }
+
                 String id=mJobPost.push().getKey();
                 String date= DateFormat.getDateInstance().format(new Date());
 
-                Data data=new Data(title,description,skills,salary,id,date);
+                Data data=new Data(title,description,skills,salary,location,id,date);
 
                 mJobPost.child(id).setValue(data);
 
