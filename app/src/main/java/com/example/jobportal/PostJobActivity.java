@@ -30,15 +30,11 @@ public class PostJobActivity extends AppCompatActivity {
     private Toolbar toolbar;
 
     //Recycler View
-
     private RecyclerView recyclerView;
 
     //Firebase
-
     private FirebaseAuth mAuth;
     private DatabaseReference JobPostDatabase;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,10 +44,8 @@ public class PostJobActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar_post_job);
         setSupportActionBar(toolbar);
 
-
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
         fabBtn = findViewById(R.id.fab_add);
 
@@ -61,7 +55,6 @@ public class PostJobActivity extends AppCompatActivity {
         String uId = mUser.getUid();
 
         JobPostDatabase = FirebaseDatabase.getInstance().getReference().child("Job Post").child(uId);
-
 
         recyclerView = findViewById(R.id.recycler_job_post_id);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -81,7 +74,6 @@ public class PostJobActivity extends AppCompatActivity {
         });
 
     }
-
 
     @Override
     protected void onStart(){
@@ -106,6 +98,7 @@ public class PostJobActivity extends AppCompatActivity {
                 viewHolder.setJobDescription(model.getDescription());
                 viewHolder.setJobSkills(model.getSkills());
                 viewHolder.setJobSalary(model.getSalary());
+                viewHolder.setJobLocation(model.getLocation());
             }
 
         };
