@@ -10,6 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
+        android:background="@drawable/background_color"
         android:layout_height="wrap_content">
 
         <TextView
@@ -22,7 +23,7 @@
             android:textAppearance="?android:textAppearanceLarge"
             android:padding="10dp"
             android:id="@+id/all_job_post_title"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             />
 
         <TextView
@@ -32,7 +33,7 @@
             android:text="8 November, 2020"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:id="@+id/all_job_post_date"
             android:textAppearance="?android:textAppearanceSmall"/>
 
@@ -45,7 +46,7 @@
             android:paddingEnd="12dp"
             android:maxLines="3"
             android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:id="@+id/all_job_post_description"
             />
 
@@ -53,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:text="Skills"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
@@ -69,7 +70,7 @@
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
             android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:id="@+id/all_job_post_salary"/>
 
         <TextView
@@ -80,7 +81,7 @@
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
             android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:id="@+id/all_job_post_location"/>
 
     </LinearLayout>
