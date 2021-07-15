@@ -49,6 +49,9 @@ public class InsertJobPostActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Post Job");
 
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         mAuth=FirebaseAuth.getInstance();
 
         FirebaseUser mUser=mAuth.getCurrentUser();
