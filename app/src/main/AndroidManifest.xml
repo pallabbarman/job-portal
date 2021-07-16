@@ -9,14 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.JobPortal">
-        <activity android:name=".JobDetailsActivity"
-            android:parentActivityName=".AllJobActivity"/>
-        <activity android:name=".InsertJobPostActivity"
-            android:parentActivityName=".PostJobActivity"/>
-        <activity android:name=".PostJobActivity"
-            android:parentActivityName=".HomeActivity"/>
-        <activity android:name=".AllJobActivity"
-            android:parentActivityName=".HomeActivity"/>
+        <activity android:name=".NotificationActivity"></activity>
+        <activity
+            android:name=".JobDetailsActivity"
+            android:parentActivityName=".AllJobActivity" />
+        <activity
+            android:name=".InsertJobPostActivity"
+            android:parentActivityName=".PostJobActivity" />
+        <activity
+            android:name=".PostJobActivity"
+            android:parentActivityName=".HomeActivity" />
+        <activity
+            android:name=".AllJobActivity"
+            android:parentActivityName=".HomeActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".RegistrationActivity" />
         <activity android:name=".MainActivity">

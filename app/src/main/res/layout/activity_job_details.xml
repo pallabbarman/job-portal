@@ -72,4 +72,14 @@
         android:textAppearance="?android:textAppearanceMedium"
         android:textColor="@android:color/white" />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:text="Apply"
+        android:textColor="@android:color/white"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:background="@drawable/button_design"
+        android:id="@+id/btn_apply"/>
+
 </LinearLayout>

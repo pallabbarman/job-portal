@@ -2,9 +2,15 @@ package com.example.jobportal;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NotificationCompat;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class JobDetailsActivity extends AppCompatActivity {
@@ -17,6 +23,8 @@ public class JobDetailsActivity extends AppCompatActivity {
     private TextView mSkills;
     private TextView mSalary;
     private TextView mLocation;
+
+    private Button apply_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +45,8 @@ public class JobDetailsActivity extends AppCompatActivity {
         mSalary = findViewById(R.id.job_details_salary);
         mLocation=findViewById(R.id.job_details_location);
 
+        apply_btn=findViewById(R.id.btn_apply);
+
         //Receive Data from all job activity using intent..
         Intent intent = getIntent();
 
@@ -53,6 +63,27 @@ public class JobDetailsActivity extends AppCompatActivity {
         mSkills.setText(skills);
         mSalary.setText(salary);
         mLocation.setText(location);
+
+        apply_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String message="Thank you for applying for this position.";
+                NotificationCompat.Builder builder=new NotificationCompat.Builder(JobDetailsActivity.this)
+                        .setSmallIcon(R.drawable.ic_message)
+                        .setContentTitle("Successfully applied")
+                        .setContentText(message)
+                        .setAutoCancel(true);
+
+                Intent intent1 = new Intent(JobDetailsActivity.this,NotificationActivity.class);
+                intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent1.putExtra("message",message);
+
+                PendingIntent pendingIntent=PendingIntent.getActivity(JobDetailsActivity.this,0, intent1,PendingIntent.FLAG_UPDATE_CURRENT);
+                builder.setContentIntent(pendingIntent);
+                NotificationManager notificationManager=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+                notificationManager.notify(0,builder.build());
+            }
+        });
 
     }
 }
