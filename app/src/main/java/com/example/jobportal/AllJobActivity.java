@@ -70,7 +70,7 @@ public class AllJobActivity extends AppCompatActivity {
             @NonNull
             @Override
             public AllJobPostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.alljobpost,parent,false);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.alljobpost, parent, false);
                 return new AllJobPostViewHolder(view);
             }
 
@@ -84,22 +84,19 @@ public class AllJobActivity extends AppCompatActivity {
                 viewHolder.setJobSalary(model.getSalary());
                 viewHolder.setJobLocation(model.getLocation());
 
-                viewHolder.myview.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+                viewHolder.myview.setOnClickListener(v -> {
 
-                        Intent intent = new Intent(getApplicationContext(), JobDetailsActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), JobDetailsActivity.class);
 
-                        intent.putExtra("title",model.getTitle());
-                        intent.putExtra("date", model.getDate());
-                        intent.putExtra("description",model.getDescription());
-                        intent.putExtra("skills",model.getSkills());
-                        intent.putExtra("salary",model.getSalary());
-                        intent.putExtra("location",model.getLocation());
+                    intent.putExtra("title", model.getTitle());
+                    intent.putExtra("date", model.getDate());
+                    intent.putExtra("description", model.getDescription());
+                    intent.putExtra("skills", model.getSkills());
+                    intent.putExtra("salary", model.getSalary());
+                    intent.putExtra("location", model.getLocation());
 
-                        startActivity(intent);
+                    startActivity(intent);
 
-                    }
                 });
             }
         };
@@ -109,41 +106,41 @@ public class AllJobActivity extends AppCompatActivity {
 
     }
 
-    public static class AllJobPostViewHolder extends RecyclerView.ViewHolder{
+    public static class AllJobPostViewHolder extends RecyclerView.ViewHolder {
 
         View myview;
 
         public AllJobPostViewHolder(@NonNull View itemView) {
             super(itemView);
-            myview=itemView;
+            myview = itemView;
         }
 
-        public void setJobTitle(String title){
+        public void setJobTitle(String title) {
             TextView mTitle = myview.findViewById(R.id.all_job_post_title);
             mTitle.setText(title);
         }
 
-        public void setJobDate(String date){
+        public void setJobDate(String date) {
             TextView mDate = myview.findViewById(R.id.all_job_post_date);
             mDate.setText(date);
         }
 
-        public void setJobDescription(String description){
+        public void setJobDescription(String description) {
             TextView mDescription = myview.findViewById(R.id.all_job_post_description);
             mDescription.setText(description);
         }
 
-        public void setJobSkills(String skills){
+        public void setJobSkills(String skills) {
             TextView mSkills = myview.findViewById(R.id.all_job_post_skills);
             mSkills.setText(skills);
         }
 
-        public void setJobSalary(String salary){
+        public void setJobSalary(String salary) {
             TextView mSalary = myview.findViewById(R.id.all_job_post_salary);
             mSalary.setText(salary);
         }
 
-        public void setJobLocation(String location){
+        public void setJobLocation(String location) {
             TextView mLocation = myview.findViewById(R.id.all_job_post_location);
             mLocation.setText(location);
         }

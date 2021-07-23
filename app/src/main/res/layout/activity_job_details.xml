@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/background_color"
     android:layout_height="match_parent"
+    android:background="@drawable/background_color"
     android:orientation="vertical"
     tools:context=".JobDetailsActivity">
 
@@ -73,13 +73,13 @@
         android:textColor="@android:color/white" />
 
     <Button
+        android:id="@+id/btn_apply"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
-        android:text="Apply"
-        android:textColor="@android:color/white"
-        android:textAppearance="?android:textAppearanceMedium"
         android:background="@drawable/button_design"
-        android:id="@+id/btn_apply"/>
+        android:text="Apply"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="@android:color/white" />
 
 </LinearLayout>

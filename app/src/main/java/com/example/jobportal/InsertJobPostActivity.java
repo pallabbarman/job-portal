@@ -45,81 +45,78 @@ public class InsertJobPostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_insert_job_post);
 
-        toolbar=findViewById(R.id.insert_job_toolbar);
+        toolbar = findViewById(R.id.insert_job_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Post Job");
 
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mAuth=FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
 
-        FirebaseUser mUser=mAuth.getCurrentUser();
-        String uId=mUser.getUid();
+        FirebaseUser mUser = mAuth.getCurrentUser();
+        String uId = mUser.getUid();
 
-        mJobPost= FirebaseDatabase.getInstance().getReference().child("Job Post").child(uId);
+        mJobPost = FirebaseDatabase.getInstance().getReference().child("Job Post").child(uId);
 
         mPublicDatabase = FirebaseDatabase.getInstance().getReference().child("Public database");
 
         InsertJob();
     }
 
-    private void InsertJob(){
-        job_title=findViewById(R.id.job_title);
-        job_description=findViewById(R.id.job_description);
-        job_skills=findViewById(R.id.job_skill);
-        job_salary=findViewById(R.id.job_salary);
-        job_location=findViewById(R.id.job_location);
+    private void InsertJob() {
+        job_title = findViewById(R.id.job_title);
+        job_description = findViewById(R.id.job_description);
+        job_skills = findViewById(R.id.job_skill);
+        job_salary = findViewById(R.id.job_salary);
+        job_location = findViewById(R.id.job_location);
 
-        btn_post_job=findViewById(R.id.btn_job_post);
+        btn_post_job = findViewById(R.id.btn_job_post);
 
-        btn_post_job.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        btn_post_job.setOnClickListener(v -> {
 
-                String title=job_title.getText().toString().trim();
-                String description=job_description.getText().toString().trim();
-                String skills=job_skills.getText().toString().trim();
-                String salary=job_salary.getText().toString().trim();
-                String location=job_location.getText().toString().trim();
+            String title = job_title.getText().toString().trim();
+            String description = job_description.getText().toString().trim();
+            String skills = job_skills.getText().toString().trim();
+            String salary = job_salary.getText().toString().trim();
+            String location = job_location.getText().toString().trim();
 
-                if (TextUtils.isEmpty(title)){
-                    job_title.setError("Required Field");
-                    return;
-                }
-
-                if (TextUtils.isEmpty(description)){
-                    job_description.setError("Required Field");
-                    return;
-                }
-
-                if (TextUtils.isEmpty(skills)){
-                    job_skills.setError("Required Field");
-                    return;
-                }
-
-                if (TextUtils.isEmpty(salary)){
-                    job_salary.setError("Required Field");
-                    return;
-                }
-
-                if (TextUtils.isEmpty(location)){
-                    job_location.setError("Required Field");
-                    return;
-                }
-
-                String id=mJobPost.push().getKey();
-                String date= DateFormat.getDateInstance().format(new Date());
-
-                Data data=new Data(title,description,skills,salary,location,id,date);
-
-                mJobPost.child(id).setValue(data);
-
-                mPublicDatabase.child(id).setValue(data);
-
-                Toast.makeText(getApplicationContext(),"Successful", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getApplicationContext(),PostJobActivity.class));
+            if (TextUtils.isEmpty(title)) {
+                job_title.setError("Required Field");
+                return;
             }
+
+            if (TextUtils.isEmpty(description)) {
+                job_description.setError("Required Field");
+                return;
+            }
+
+            if (TextUtils.isEmpty(skills)) {
+                job_skills.setError("Required Field");
+                return;
+            }
+
+            if (TextUtils.isEmpty(salary)) {
+                job_salary.setError("Required Field");
+                return;
+            }
+
+            if (TextUtils.isEmpty(location)) {
+                job_location.setError("Required Field");
+                return;
+            }
+
+            String id = mJobPost.push().getKey();
+            String date = DateFormat.getDateInstance().format(new Date());
+
+            Data data = new Data(title, description, skills, salary, location, id, date);
+
+            mJobPost.child(id).setValue(data);
+
+            mPublicDatabase.child(id).setValue(data);
+
+            Toast.makeText(getApplicationContext(), "Successful", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(getApplicationContext(), PostJobActivity.class));
         });
     }
 }

@@ -7,11 +7,10 @@ public class Data {
     String skills;
     String salary;
     String location;
-
     String id;
     String date;
 
-    public Data(){
+    public Data() {
 
     }
 
@@ -57,9 +56,13 @@ public class Data {
         this.salary = salary;
     }
 
-    public String getLocation(){return location; }
+    public String getLocation() {
+        return location;
+    }
 
-    public void setLocation(String location) {this.location=location; }
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
     public String getId() {
         return id;
